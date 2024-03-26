@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+        }
+        h1 {
+            color: #fff;
+            text-align: center;
+        }
+        .subject {
+            margin-top: 30px;
+        }
+        .subject-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f8f9fa;
+            margin-bottom: 10px;
+        }
+        .topic-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .topic-item {
+            margin-bottom: 10px;
+        }
+        .topic-link {
+            color: #17a2b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .topic-link:hover {
+            color: #138496;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Subjects</h1>
+        {% for subject_with_topics in subjects_with_topics %}
+        <div class="subject">
+            <h2 class="subject-title">{{ subject_with_topics.subject.title }}</h2>
+            <ul class="topic-list">
+                {% for topic in subject_with_topics.topics %}
+                <li class="topic-item"><a href="{% url 'topic_detail' topic.id %}" class="topic-link">{{ topic.question }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- Bootstrap JS and dependencies (optional) -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
